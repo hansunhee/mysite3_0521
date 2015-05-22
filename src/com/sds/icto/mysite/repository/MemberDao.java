@@ -1,5 +1,8 @@
 package com.sds.icto.mysite.repository;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.ibatis.SqlMapClientTemplate;
 import org.springframework.stereotype.Repository;
@@ -21,5 +24,16 @@ public class MemberDao {
 	}
 	public void update(MemberVo vo){
 		sqlMapClientTemplate.update("member.update", vo);
+	}
+	@SuppressWarnings("unchecked")
+	public List<MemberVo> selectList(){
+		List<MemberVo> list=new ArrayList<MemberVo>();
+		list=sqlMapClientTemplate.queryForList("member.selectList");
+		return list;
+	}
+	public MemberVo selectByEmail(String email){
+		MemberVo vo=null;
+		vo=(MemberVo)sqlMapClientTemplate.queryForObject("member.selectByEmail", email);
+		return vo;
 	}
 }

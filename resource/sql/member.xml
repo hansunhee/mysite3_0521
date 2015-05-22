@@ -21,5 +21,17 @@
 			select * from member where email = #email# and password = #password#
 		]]>	
 	</select>
+
+	<select id="selectList" resultClass="MemberVo">
+		<![CDATA[
+			select * from member
+		]]>	
+	</select>
+
+	<select id="selectByEmail" resultClass="MemberVo" parameterClass="String">
+		<![CDATA[
+			select * from member where email=#email#
+		]]>	
+	</select>
 	
 </sqlMap>

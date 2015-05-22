@@ -1,5 +1,7 @@
 package com.sds.icto.mysite.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,5 +24,11 @@ public class MemberService {
 	
 	public void modifyMyinfo(MemberVo vo){
 		memberDao.update(vo);
+	}
+	public List<MemberVo> getList(){
+		return memberDao.selectList();
+	}
+	public MemberVo getByEmail(String email){
+		return memberDao.selectByEmail(email);
 	}
 }

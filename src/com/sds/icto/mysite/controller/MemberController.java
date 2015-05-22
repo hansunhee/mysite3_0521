@@ -1,5 +1,9 @@
 package com.sds.icto.mysite.controller;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sds.icto.mysite.domain.MemberVo;
 import com.sds.icto.mysite.service.MemberService;
@@ -61,5 +67,22 @@ public class MemberController {
 		}else{
 			return "redirect:/member/login";
 		}
+	}
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value="/checkemail", method=RequestMethod.POST)
+	@ResponseBody
+	public Map checkemail(@RequestParam String email){
+		System.out.println(email);
+		MemberVo vo=memberService.getByEmail(email);
+		System.out.println(vo);
+		Map map=new HashMap();
+		if(vo == null){
+			map.put("result", true);
+			map.put("msg", "사용가능합니다.");
+		}else{
+			map.put("result", false);
+			map.put("msg", "사용불가합니다.");			
+		}
+		return map;
 	}
 }

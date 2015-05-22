@@ -18,9 +18,11 @@ fieldset				{ border:none }
 input[type="submit"]	{ display:block; width:80px; margin:20px auto }
 
 #user input{
-	font-style: '맑은 고딕';
+	font-family: '맑은 고딕';
 }
-
+#user #check-btn{
+	font-family: '맑은 고딕';
+}
 #login-form	{
 	width:175px;
 	padding:10px;
